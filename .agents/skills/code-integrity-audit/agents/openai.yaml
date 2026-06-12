@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Integrity Audit"
+  short_description: "Find state, contract, and logic regressions"
+  default_prompt: "Use $code-integrity-audit to review this code for correctness and regression risk."

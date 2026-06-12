@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generalist Engineer"
+  short_description: "Senior full-stack and native engineering workflow"
+  default_prompt: "Use $generalist-engineer to plan and implement this software task."
