@@ -32,3 +32,52 @@ Use $code-integrity-audit to review this change.
 ```
 
 La copia sotto `.agents/skills` e versionata nel repo, cosi puo essere copiata o sincronizzata in altri ambienti Codex.
+
+## Cursor (globale)
+
+In Cursor ci sono due modi per usare questo harness in tutti i progetti:
+
+| Tipo | Percorso globale | Cosa fa |
+|---|---|---|
+| Skill | `~/.cursor/skills/` | Invocabili con `$nome-skill` in chat |
+| Subagent | `~/.cursor/agents/` | Agenti specializzati delegabili dal Task tool |
+
+Installazione consigliata (symlink al repo, una sola fonte di verita):
+
+```bash
+chmod +x scripts/install-cursor-global.sh
+./scripts/install-cursor-global.sh
+```
+
+Lo script:
+
+- collega `.agents/skills/*` in `~/.cursor/skills/`
+- genera i subagent in `~/.cursor/agents/` a partire da `agent-generalist.md`, `style-caveman.md` e `audit-code-integrity.md`
+
+Dopo l'installazione, riapri la chat o riavvia Cursor.
+
+Invocazione esplicita in chat:
+
+```text
+Use $generalist-engineer to implement this task.
+Use $compact-communication to keep the answer terse.
+Use $code-integrity-audit to review this change.
+```
+
+Invocazione subagent:
+
+```text
+Use the generalist-engineer subagent to implement this feature.
+Use the code-integrity-audit subagent to review this diff.
+```
+
+Installazione manuale alternativa:
+
+```bash
+mkdir -p ~/.cursor/skills
+ln -sfn "$(pwd)/.agents/skills/generalist-engineer" ~/.cursor/skills/generalist-engineer
+ln -sfn "$(pwd)/.agents/skills/compact-communication" ~/.cursor/skills/compact-communication
+ln -sfn "$(pwd)/.agents/skills/code-integrity-audit" ~/.cursor/skills/code-integrity-audit
+```
+
+Nota: non mettere skill personali in `~/.cursor/skills-cursor/`; quella cartella e riservata a Cursor.
