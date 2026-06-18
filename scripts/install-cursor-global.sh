@@ -9,6 +9,7 @@ SKILLS=(
   generalist-engineer
   compact-communication
   code-integrity-audit
+  direct-answers
 )
 
 mkdir -p "$CURSOR_SKILLS" "$CURSOR_AGENTS"

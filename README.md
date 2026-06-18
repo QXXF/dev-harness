@@ -10,6 +10,7 @@ Raccolta di harness per agenti LLM usati nel workflow di sviluppo.
 - `.agents/skills/generalist-engineer/SKILL.md` - skill Codex portabile per agente generalista.
 - `.agents/skills/compact-communication/SKILL.md` - skill Codex portabile per comunicazione compatta.
 - `.agents/skills/code-integrity-audit/SKILL.md` - skill Codex portabile per audit di integrita del codice.
+- `.agents/skills/direct-answers/SKILL.md` - skill Codex portabile per risposte dirette e concise.
 
 ## Uso consigliato
 
@@ -29,6 +30,7 @@ Invocazione esplicita:
 Use $generalist-engineer to implement this task.
 Use $compact-communication to keep the answer terse.
 Use $code-integrity-audit to review this change.
+Use $direct-answers to answer directly and concisely.
 ```
 
 La copia sotto `.agents/skills` e versionata nel repo, cosi puo essere copiata o sincronizzata in altri ambienti Codex.
@@ -62,6 +64,7 @@ Invocazione esplicita in chat:
 Use $generalist-engineer to implement this task.
 Use $compact-communication to keep the answer terse.
 Use $code-integrity-audit to review this change.
+Use $direct-answers to answer directly and concisely.
 ```
 
 Invocazione subagent:
@@ -78,6 +81,7 @@ mkdir -p ~/.cursor/skills
 ln -sfn "$(pwd)/.agents/skills/generalist-engineer" ~/.cursor/skills/generalist-engineer
 ln -sfn "$(pwd)/.agents/skills/compact-communication" ~/.cursor/skills/compact-communication
 ln -sfn "$(pwd)/.agents/skills/code-integrity-audit" ~/.cursor/skills/code-integrity-audit
+ln -sfn "$(pwd)/.agents/skills/direct-answers" ~/.cursor/skills/direct-answers
 ```
 
 Nota: non mettere skill personali in `~/.cursor/skills-cursor/`; quella cartella e riservata a Cursor.

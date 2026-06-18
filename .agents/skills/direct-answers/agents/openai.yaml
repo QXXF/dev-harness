@@ -1,0 +1,4 @@
+interface:
+  display_name: "Direct Answers"
+  short_description: "Risposte dirette: prima il verdetto, poi il minimo indispensabile"
+  default_prompt: "Use $direct-answers to answer directly and concisely."
