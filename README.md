@@ -4,19 +4,14 @@ Raccolta di harness per agenti LLM usati nel workflow di sviluppo.
 
 ## File
 
-- `agent-generalist.md` - agente senior generalista per sviluppo frontend, backend, mobile nativo e automazione.
-- `style-caveman.md` - stile di comunicazione compatto, configurabile per intensita.
-- `audit-code-integrity.md` - lente di audit per correttezza, invarianti, stato e regressioni.
-- `.agents/skills/generalist-engineer/SKILL.md` - skill Codex portabile per agente generalista.
-- `.agents/skills/compact-communication/SKILL.md` - skill Codex portabile per comunicazione compatta.
-- `.agents/skills/code-integrity-audit/SKILL.md` - skill Codex portabile per audit di integrita del codice.
-- `.agents/skills/direct-answers/SKILL.md` - skill Codex portabile per risposte dirette e concise.
-- `.agents/skills/node/SKILL.md` - skill per eseguire npm/node via alias `node;` (fnm) nel terminale agent.
-- `.agents/skills/ponytail/SKILL.md` - skill per soluzioni minimali: YAGNI, stdlib first, diff piu corto possibile.
+- `.agents/skills/dev-core/SKILL.md` - skill principale, sempre attiva: ingegnere generalista senior, soluzioni minimali (YAGNI, stdlib first), risposte dirette e prosa compatta. Fonde le ex skill generalist-engineer, ponytail, direct-answers e compact-communication.
+- `.agents/skills/code-integrity-audit/SKILL.md` - skill on-demand per audit di integrita del codice.
+- `.agents/skills/node/SKILL.md` - skill contestuale: esegue npm/node via alias `node;` (fnm) nel terminale agent.
+- `.legacy/` - vecchi harness monolitici, sostituiti dalle skill.
 
 ## Uso consigliato
 
-Usa `agent-generalist.md` come base. Aggiungi `style-caveman.md` quando vuoi output piu asciutto. Aggiungi `audit-code-integrity.md` quando il lavoro tocca stato, contratti, sicurezza, concorrenza, dati o logica critica.
+`dev-core` copre il lavoro quotidiano. `code-integrity-audit` si lancia su richiesta quando il lavoro tocca stato, contratti, sicurezza, concorrenza, dati o logica critica. `node` scatta da sola quando serve npm/node nel terminale.
 
 ## Skill Codex
 
@@ -29,24 +24,16 @@ C:\Users\giuliano.gangemi\.codex\skills
 Invocazione esplicita:
 
 ```text
-Use $generalist-engineer to implement this task.
-Use $compact-communication to keep the answer terse.
+Use $dev-core as the default engineering and communication mode.
 Use $code-integrity-audit to review this change.
-Use $direct-answers to answer directly and concisely.
 Use $node when running npm or node in the shell.
-Use $ponytail for the minimal solution that works.
 ```
 
 La copia sotto `.agents/skills` e versionata nel repo, cosi puo essere copiata o sincronizzata in altri ambienti Codex.
 
 ## Cursor (globale)
 
-In Cursor ci sono due modi per usare questo harness in tutti i progetti:
-
-| Tipo | Percorso globale | Cosa fa |
-|---|---|---|
-| Skill | `~/.cursor/skills/` | Invocabili con `$nome-skill` in chat |
-| Subagent | `~/.cursor/agents/` | Agenti specializzati delegabili dal Task tool |
+Le skill vanno in `~/.cursor/skills/` e sono invocabili con `$nome-skill` in chat.
 
 Installazione consigliata (symlink al repo, una sola fonte di verita):
 
@@ -55,41 +42,31 @@ chmod +x scripts/install-cursor-global.sh
 ./scripts/install-cursor-global.sh
 ```
 
-Lo script:
-
-- collega `.agents/skills/*` in `~/.cursor/skills/`
-- genera i subagent in `~/.cursor/agents/` a partire da `agent-generalist.md`, `style-caveman.md` e `audit-code-integrity.md`
+Lo script collega `.agents/skills/*` in `~/.cursor/skills/` e rimuove skill e subagent obsoleti delle versioni precedenti.
 
 Dopo l'installazione, riapri la chat o riavvia Cursor.
 
 Invocazione esplicita in chat:
 
 ```text
-Use $generalist-engineer to implement this task.
-Use $compact-communication to keep the answer terse.
+Use $dev-core as the default engineering and communication mode.
 Use $code-integrity-audit to review this change.
-Use $direct-answers to answer directly and concisely.
 Use $node when running npm or node in the shell.
-Use $ponytail for the minimal solution that works.
 ```
 
-Invocazione subagent:
+Rule Cursor consigliata (User Rules, una riga):
 
 ```text
-Use the generalist-engineer subagent to implement this feature.
-Use the code-integrity-audit subagent to review this diff.
+Segui sempre la skill dev-core. Usa node per comandi npm/node e code-integrity-audit quando chiedo audit o review.
 ```
 
 Installazione manuale alternativa:
 
 ```bash
 mkdir -p ~/.cursor/skills
-ln -sfn "$(pwd)/.agents/skills/generalist-engineer" ~/.cursor/skills/generalist-engineer
-ln -sfn "$(pwd)/.agents/skills/compact-communication" ~/.cursor/skills/compact-communication
+ln -sfn "$(pwd)/.agents/skills/dev-core" ~/.cursor/skills/dev-core
 ln -sfn "$(pwd)/.agents/skills/code-integrity-audit" ~/.cursor/skills/code-integrity-audit
-ln -sfn "$(pwd)/.agents/skills/direct-answers" ~/.cursor/skills/direct-answers
 ln -sfn "$(pwd)/.agents/skills/node" ~/.cursor/skills/node
-ln -sfn "$(pwd)/.agents/skills/ponytail" ~/.cursor/skills/ponytail
 ```
 
 Nota: non mettere skill personali in `~/.cursor/skills-cursor/`; quella cartella e riservata a Cursor.

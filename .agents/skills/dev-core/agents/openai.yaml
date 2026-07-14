@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dev Core"
+  short_description: "Senior generalist, minimal solutions, direct compact answers"
+  default_prompt: "Use $dev-core as the default engineering and communication mode."

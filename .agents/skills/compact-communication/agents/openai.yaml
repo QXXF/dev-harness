@@ -1,4 +1,0 @@
-interface:
-  display_name: "Compact Communication"
-  short_description: "Concise caveman-style technical responses"
-  default_prompt: "Use $compact-communication to answer in a concise technical style."

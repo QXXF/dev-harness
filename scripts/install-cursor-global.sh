@@ -6,11 +6,16 @@ CURSOR_SKILLS="${CURSOR_SKILLS_DIR:-$HOME/.cursor/skills}"
 CURSOR_AGENTS="${CURSOR_AGENTS_DIR:-$HOME/.cursor/agents}"
 
 SKILLS=(
+  dev-core
+  code-integrity-audit
+  node
+)
+
+# Skill fuse in dev-core: rimuovi eventuali symlink obsoleti
+STALE_SKILLS=(
   generalist-engineer
   compact-communication
-  code-integrity-audit
   direct-answers
-  node
   ponytail
 )
 
@@ -30,43 +35,26 @@ for skill in "${SKILLS[@]}"; do
   echo "  linked $skill -> $src"
 done
 
-install_agent() {
-  local name="$1"
-  local description="$2"
-  local source_file="$3"
-  local dest="$CURSOR_AGENTS/$name.md"
+for skill in "${STALE_SKILLS[@]}"; do
+  dest="$CURSOR_SKILLS/$skill"
+  if [[ -e "$dest" || -L "$dest" ]]; then
+    rm -rf "$dest"
+    echo "  removed stale $skill"
+  fi
+done
 
-  {
-    printf '%s\n' "---"
-    printf '%s\n' "name: $name"
-    printf '%s\n' "description: $description"
-    printf '%s\n' "---"
-    printf '\n'
-    cat "$source_file"
-  } >"$dest"
-
-  echo "  wrote agent $name -> $dest"
-}
-
-echo "Installing dev-harness subagents into $CURSOR_AGENTS"
-install_agent \
-  "generalist-engineer" \
-  "Senior generalist software engineer for frontend, backend, SwiftUI/native, tooling, tests, architecture, implementation, refactoring, debugging, and code review. Use proactively for general development tasks." \
-  "$REPO_ROOT/agent-generalist.md"
-
-install_agent \
-  "compact-communication" \
-  "Concise caveman-style technical communication. Use when the user asks for compact mode, terse responses, or /caveman lite|full|ultra." \
-  "$REPO_ROOT/style-caveman.md"
-
-install_agent \
-  "code-integrity-audit" \
-  "Code review and integrity audit for correctness, state, contracts, security, concurrency, and regressions. Use proactively for audits, reviews, bug hunts, and CI failures." \
-  "$REPO_ROOT/audit-code-integrity.md"
+# Subagent generati in passato da questo script: le skill li sostituiscono
+for agent in generalist-engineer compact-communication code-integrity-audit; do
+  dest="$CURSOR_AGENTS/$agent.md"
+  if [[ -e "$dest" ]]; then
+    rm -f "$dest"
+    echo "  removed stale agent $agent"
+  fi
+done
 
 echo
-echo "Done. Restart Cursor or open a new chat to pick up global skills and agents."
+echo "Done. Restart Cursor or open a new chat to pick up global skills."
 echo
 echo "Examples:"
-echo "  Use \$generalist-engineer to implement this task."
-echo "  Use the code-integrity-audit subagent to review this change."
+echo "  Use \$dev-core as the default engineering and communication mode."
+echo "  Use \$code-integrity-audit to review this change."
