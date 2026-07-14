@@ -1,0 +1,4 @@
+interface:
+  display_name: "Node (fnm)"
+  short_description: "Run npm/node via the node; fnm alias in agent terminal"
+  default_prompt: "Use $node when running npm or node in the shell."

@@ -10,6 +10,8 @@ SKILLS=(
   compact-communication
   code-integrity-audit
   direct-answers
+  node
+  ponytail
 )
 
 mkdir -p "$CURSOR_SKILLS" "$CURSOR_AGENTS"

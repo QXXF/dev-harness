@@ -11,6 +11,8 @@ Raccolta di harness per agenti LLM usati nel workflow di sviluppo.
 - `.agents/skills/compact-communication/SKILL.md` - skill Codex portabile per comunicazione compatta.
 - `.agents/skills/code-integrity-audit/SKILL.md` - skill Codex portabile per audit di integrita del codice.
 - `.agents/skills/direct-answers/SKILL.md` - skill Codex portabile per risposte dirette e concise.
+- `.agents/skills/node/SKILL.md` - skill per eseguire npm/node via alias `node;` (fnm) nel terminale agent.
+- `.agents/skills/ponytail/SKILL.md` - skill per soluzioni minimali: YAGNI, stdlib first, diff piu corto possibile.
 
 ## Uso consigliato
 
@@ -31,6 +33,8 @@ Use $generalist-engineer to implement this task.
 Use $compact-communication to keep the answer terse.
 Use $code-integrity-audit to review this change.
 Use $direct-answers to answer directly and concisely.
+Use $node when running npm or node in the shell.
+Use $ponytail for the minimal solution that works.
 ```
 
 La copia sotto `.agents/skills` e versionata nel repo, cosi puo essere copiata o sincronizzata in altri ambienti Codex.
@@ -65,6 +69,8 @@ Use $generalist-engineer to implement this task.
 Use $compact-communication to keep the answer terse.
 Use $code-integrity-audit to review this change.
 Use $direct-answers to answer directly and concisely.
+Use $node when running npm or node in the shell.
+Use $ponytail for the minimal solution that works.
 ```
 
 Invocazione subagent:
@@ -82,6 +88,8 @@ ln -sfn "$(pwd)/.agents/skills/generalist-engineer" ~/.cursor/skills/generalist-
 ln -sfn "$(pwd)/.agents/skills/compact-communication" ~/.cursor/skills/compact-communication
 ln -sfn "$(pwd)/.agents/skills/code-integrity-audit" ~/.cursor/skills/code-integrity-audit
 ln -sfn "$(pwd)/.agents/skills/direct-answers" ~/.cursor/skills/direct-answers
+ln -sfn "$(pwd)/.agents/skills/node" ~/.cursor/skills/node
+ln -sfn "$(pwd)/.agents/skills/ponytail" ~/.cursor/skills/ponytail
 ```
 
 Nota: non mettere skill personali in `~/.cursor/skills-cursor/`; quella cartella e riservata a Cursor.

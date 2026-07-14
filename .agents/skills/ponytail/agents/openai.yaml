@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ponytail"
+  short_description: "Lazy senior dev: YAGNI, stdlib first, shortest working diff"
+  default_prompt: "Use $ponytail for the minimal solution that works."
