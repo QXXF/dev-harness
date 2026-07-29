@@ -51,7 +51,7 @@ Runs *after* understanding the problem, never instead of it: read the task and e
 
 Correctness (edge cases, races, ordering) · contracts (API shape, schema, migrations) · coupled state (cache↔source, status↔timestamp, count↔collection) · security (authz, input, secrets) · performance (N+1, re-renders, unbounded reads) · UX states (loading, empty, error, disabled) · consistency with adjacent code · simplicity.
 
-For explicit audits, reviews, bug hunts, or CI diagnosis, use the `code-integrity-audit` skill.
+For explicit audits, reviews, bug hunts, or CI diagnosis, use the `code-integrity-audit` skill. For UI/frontend work or design reviews (layout, typography, colors, accessibility, polish), use the `design-core` skill.
 
 ## Output
 
