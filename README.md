@@ -1,72 +1,57 @@
-# Skills Harness
+# Dev Harness
 
-Raccolta di harness per agenti LLM usati nel workflow di sviluppo.
+Skill per agenti LLM (Cursor, Codex) usate nel workflow di sviluppo. Fonte di verita unica: `.agents/skills/`, versionata nel repo e collegata via symlink alle installazioni globali.
 
-## File
+## Skill
 
-- `.agents/skills/dev-core/SKILL.md` - skill principale, sempre attiva: ingegnere generalista senior, soluzioni minimali (YAGNI, stdlib first), risposte dirette e prosa compatta. Fonde le ex skill generalist-engineer, ponytail, direct-answers e compact-communication.
-- `.agents/skills/code-integrity-audit/SKILL.md` - skill on-demand per audit di integrita del codice.
-- `.agents/skills/node/SKILL.md` - skill contestuale: esegue npm/node via alias `node;` (fnm) nel terminale agent.
-- `.legacy/` - vecchi harness monolitici, sostituiti dalle skill.
+| Skill | Attivazione | Cosa fa |
+|-------|-------------|---------|
+| `dev-core` | sempre attiva | ingegnere generalista senior: soluzioni minimali (YAGNI, stdlib first), risposte dirette, prosa compatta |
+| `code-integrity-audit` | on-demand | audit di integrita: stato accoppiato, contratti, sicurezza, concorrenza, operazioni appaiate |
+| `design-core` | on-demand | craft UI/frontend: accessibilita, layout, tipografia, colori, polish e design review |
+| `breakdown` | on-demand | scompone qualsiasi problema/soluzione in bit atomici + sequenza operativa: spiegazione comprensibile a chiunque, zero gergo |
+| `node` | contestuale | esegue npm/node via alias `node;` (fnm) nel terminale agent |
 
-## Uso consigliato
+`.legacy/` contiene i vecchi harness monolitici, sostituiti dalle skill.
 
-`dev-core` copre il lavoro quotidiano. `code-integrity-audit` si lancia su richiesta quando il lavoro tocca stato, contratti, sicurezza, concorrenza, dati o logica critica. `node` scatta da sola quando serve npm/node nel terminale.
+## Installazione — Cursor (globale)
 
-## Skill Codex
-
-Le skill sono installate globalmente in:
-
-```text
-C:\Users\giuliano.gangemi\.codex\skills
-```
-
-Invocazione esplicita:
-
-```text
-Use $dev-core as the default engineering and communication mode.
-Use $code-integrity-audit to review this change.
-Use $node when running npm or node in the shell.
-```
-
-La copia sotto `.agents/skills` e versionata nel repo, cosi puo essere copiata o sincronizzata in altri ambienti Codex.
-
-## Cursor (globale)
-
-Le skill vanno in `~/.cursor/skills/` e sono invocabili con `$nome-skill` in chat.
-
-Installazione consigliata (symlink al repo, una sola fonte di verita):
+Le skill vanno in `~/.cursor/skills/`. Installazione consigliata (symlink al repo):
 
 ```bash
 chmod +x scripts/install-cursor-global.sh
 ./scripts/install-cursor-global.sh
 ```
 
-Lo script collega `.agents/skills/*` in `~/.cursor/skills/` e rimuove skill e subagent obsoleti delle versioni precedenti.
-
-Dopo l'installazione, riapri la chat o riavvia Cursor.
-
-Invocazione esplicita in chat:
-
-```text
-Use $dev-core as the default engineering and communication mode.
-Use $code-integrity-audit to review this change.
-Use $node when running npm or node in the shell.
-```
-
-Rule Cursor consigliata (User Rules, una riga):
-
-```text
-Segui sempre la skill dev-core. Usa node per comandi npm/node e code-integrity-audit quando chiedo audit o review.
-```
+Lo script collega `.agents/skills/*` in `~/.cursor/skills/` e rimuove skill e subagent obsoleti delle versioni precedenti. Dopo l'installazione, riapri la chat o riavvia Cursor.
 
 Installazione manuale alternativa:
 
 ```bash
 mkdir -p ~/.cursor/skills
-ln -sfn "$(pwd)/.agents/skills/dev-core" ~/.cursor/skills/dev-core
-ln -sfn "$(pwd)/.agents/skills/code-integrity-audit" ~/.cursor/skills/code-integrity-audit
-ln -sfn "$(pwd)/.agents/skills/node" ~/.cursor/skills/node
+for s in dev-core code-integrity-audit design-core breakdown node; do
+  ln -sfn "$(pwd)/.agents/skills/$s" ~/.cursor/skills/$s
+done
 ```
 
 Nota: non mettere skill personali in `~/.cursor/skills-cursor/`; quella cartella e riservata a Cursor.
+
+## Installazione — Codex
+
+Le skill vanno in `C:\Users\giuliano.gangemi\.codex\skills`: copia o sincronizza le directory da `.agents/skills/`. Ogni skill include `agents/openai.yaml` con display name e prompt di default per l'interfaccia Codex.
+
+## Invocazione esplicita
+
+```text
+Use $dev-core as the default engineering and communication mode.
+Use $code-integrity-audit to review this change.
+Use $design-core for UI/frontend work or design reviews.
+Use $breakdown to decompose and explain a problem or solution.
+Use $node when running npm or node in the shell.
+```
+
+## User rule consigliata (Cursor, una riga)
+
+```text
+Segui sempre la skill dev-core. Usa node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend e breakdown quando chiedo di scomporre o spiegare un problema.
+```

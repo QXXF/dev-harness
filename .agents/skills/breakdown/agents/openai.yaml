@@ -1,0 +1,4 @@
+interface:
+  display_name: "Breakdown"
+  short_description: "Any problem into atomic bits and an ordered act sequence"
+  default_prompt: "Use $breakdown to decompose and explain this problem."

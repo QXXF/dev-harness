@@ -8,6 +8,8 @@ CURSOR_AGENTS="${CURSOR_AGENTS_DIR:-$HOME/.cursor/agents}"
 SKILLS=(
   dev-core
   code-integrity-audit
+  design-core
+  breakdown
   node
 )
 
@@ -18,6 +20,61 @@ STALE_SKILLS=(
   direct-answers
   ponytail
 )
+
+to_win_path() {
+  if command -v cygpath >/dev/null 2>&1; then
+    cygpath -w "$1"
+  else
+    printf '%s\n' "$1"
+  fi
+}
+
+# Rimuove symlink, junction o directory. Preferisce rmdir su Windows cosi
+# un junction non cancella il contenuto del target.
+remove_path() {
+  local path="$1"
+  [[ -e "$path" || -L "$path" ]] || return 0
+
+  if [[ -L "$path" ]]; then
+    rm -f "$path"
+    return
+  fi
+
+  if command -v cmd.exe >/dev/null 2>&1; then
+    local win
+    win="$(to_win_path "$path")"
+    if cmd.exe //c "rmdir \"$win\"" >/dev/null 2>&1; then
+      [[ ! -e "$path" && ! -L "$path" ]] && return
+    fi
+  fi
+
+  rm -rf "$path"
+}
+
+# Symlink reale se possibile; su Windows Git Bash spesso copia → junction.
+link_skill() {
+  local src="$1" dest="$2"
+
+  remove_path "$dest"
+
+  if ln -s "$src" "$dest" 2>/dev/null && [[ -L "$dest" ]]; then
+    return 0
+  fi
+
+  remove_path "$dest"
+
+  if command -v powershell.exe >/dev/null 2>&1; then
+    local win_src win_dest
+    win_src="$(to_win_path "$src")"
+    win_dest="$(to_win_path "$dest")"
+    powershell.exe -NoProfile -Command \
+      "New-Item -ItemType Junction -Path '$win_dest' -Target '$win_src' | Out-Null"
+    return
+  fi
+
+  echo "Could not create symlink or junction: $dest" >&2
+  exit 1
+}
 
 mkdir -p "$CURSOR_SKILLS" "$CURSOR_AGENTS"
 
@@ -31,14 +88,14 @@ for skill in "${SKILLS[@]}"; do
     exit 1
   fi
 
-  ln -sfn "$src" "$dest"
+  link_skill "$src" "$dest"
   echo "  linked $skill -> $src"
 done
 
 for skill in "${STALE_SKILLS[@]}"; do
   dest="$CURSOR_SKILLS/$skill"
   if [[ -e "$dest" || -L "$dest" ]]; then
-    rm -rf "$dest"
+    remove_path "$dest"
     echo "  removed stale $skill"
   fi
 done
@@ -58,3 +115,5 @@ echo
 echo "Examples:"
 echo "  Use \$dev-core as the default engineering and communication mode."
 echo "  Use \$code-integrity-audit to review this change."
+echo "  Use \$design-core for UI/frontend work or design reviews."
+echo "  Use \$breakdown to decompose and explain a problem or solution."
