@@ -36,6 +36,16 @@ Domanda: "Perché un cache-aside può restare stale per sempre anche se invalidi
 
 > Needs changes, per un solo colore. Il testo secondario usa `--text-muted: #8a8a8a` (un grigio medio, `tokens.css:14`) su sfondo bianco: il contrasto (quanto il testo si distingue dallo sfondo: più il rapporto è alto, più i due colori sono diversi e il testo si legge) è 3,5:1, mentre le WCAG (le linee guida di accessibilità del web) chiedono almeno 4,5:1 per testo di dimensione normale. Sotto quella soglia chi ha una vista debole o uno schermo al sole non legge. Scurisci a `#6b6b6b` (grigio più scuro, 5,3:1) e passi. Gli altri token (colori definiti una volta e riusati ovunque) sono sopra soglia: lasciali.
 
+## voice-core — parla potabile, nomi veri
+
+Domanda: "mi spieghi come funziona Angular 21 in pochi paragrafi?"
+
+Sbagliato: "pezzo" al posto di componente, ripetuto, e "a pezzi" come se fosse un nome. Giusto: il nome vero resta, definito una volta; sul cammino di lavoro si dice "passo".
+
+> Angular 21 è il framework (insieme di librerie e convenzioni per costruire un'app) con cui scrivi interfacce web in TypeScript, a componenti (unità di UI con markup e logica). Il punto di partenza è quasi sempre il signal (variabile che avvisa Angular quando il valore cambia): lo leggi nel markup e Angular ridisegna solo quel componente. Nelle app nuove da novembre 2025 questo è zoneless (senza Zone.js, quindi senza intercettare click, Promise e timer del browser): `ng new` parte già così. Se muti una proprietà normale e aspetti che lo schermo si aggiorni da solo, non succede.
+>
+> Ogni componente è un file che importi dove ti serve, con markup che usa `@if` e `@for`, servizi chiesti con `inject()`, e dati dal backend via `HttpClient` o `httpResource`. Il router sceglie quale componente mostrare in base all'URL. I form vecchi restano, e i `NgModule` vecchi funzionano ancora; i Signal Forms in v21 sono ancora sperimentali. I test nuovi girano su Vitest. Un'app già in produzione tiene Zone.js finché non migri tu: `ng update` aggiunge `provideZoneChangeDetection()` se serve. Per partire oggi usa `ng new` e tieni lo stato nei signal; per un progetto già esistente lascia Zone.js e converti un passo alla volta.
+
 ## breakdown discorsivo — concetto di runtime
 
 Domanda: "Perché `setTimeout(fn, 0)` parte dopo un `.then` già risolto?"

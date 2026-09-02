@@ -68,11 +68,11 @@ Craft UI/frontend: costruire e revisionare interfacce.
 
 Usala quando costruisci componenti, stili pagine, o chiedi una design/UI review.
 
-### `breakdown` — on-demand
+### `breakdown` — opt-in (`/breakdown`)
 
 Scompone un problema e la sua soluzione in 8 bit (una riga ciascuno) e una sequenza operativa ≤7 passi. Stesso schema ogni volta: Frame → Bits → Act → one-liner.
 
-Usala su `breakdown`, `scomponi`, `spiegami il fix`, `handoff`, `schema`, o dopo un fix non banale. Modalità discorsiva (stessa sostanza in 1-2 paragrafi, senza tabella) su `discorsivo`, `umano`, `per il mio manager`, `in un paragrafo`. Companion di `dev-core`: questa skill dice come *vedere* il problema, `dev-core` come *codificarlo`.
+Si carica **solo** se la invochi con `/breakdown` o `$breakdown` (`disable-model-invocation: true`). Spiegare un problema senza quell'invoke è `voice-core`, non questo schema. Aggiungi `discorsivo` per 1-2 paragrafi senza tabella, ma solo dopo l'invoke.
 
 ### `flow-mirror` — on-demand
 
@@ -111,7 +111,7 @@ Use $dev-core as the default engineering and communication mode.
 Use $voice-core to shape the prose of the final answer.
 Use $code-integrity-audit to review this change.
 Use $design-core for UI/frontend work or design reviews.
-Use $breakdown to decompose and explain a problem or solution.
+Use $breakdown only when explicitly invoked (/breakdown or $breakdown).
 Use $flow-mirror for the complete FE/BE UI/UX flow mirror.
 Use $node when running npm or node in the shell.
 ```
@@ -123,9 +123,9 @@ Le skill in `~/.cursor/skills/` sono visibili all'agente, ma non tutte si carica
 Cursor la tiene nei settings dell'account, non in un file del disco. Per aggiornarla: **Cursor Settings → Rules → User Rules**, sostituisci il blocco intero. Poi apri una chat nuova.
 
 ```text
-Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), breakdown quando chiedo di scomporre o spiegare un problema, e flow-mirror a fine analisi quando serve lo specchio UI/UX completo.
+Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
 ```
 
-Rispetto all'hook precedente: `voice-core` è sempre attiva insieme a `dev-core` (layer sulla prosa della risposta finale, non sul ragionamento). Restano `node`, `code-integrity-audit` e `design-core` con gli stessi trigger. Aggiunti `breakdown` e `flow-mirror`, che prima dipendevano solo dal match della description.
+Rispetto all'hook precedente: `voice-core` è sempre attiva insieme a `dev-core`. Restano `node`, `code-integrity-audit`, `design-core` e `flow-mirror` con gli stessi trigger. `breakdown` è opt-in: solo `/breakdown` o `$breakdown`, così non cozza con `voice-core` sulle spiegazioni.
 
 In questo repo la stessa riga vive in `.cursor/rules/skills.mdc` (`alwaysApply: true`), così le chat sul harness la caricano anche senza la user rule. Negli altri progetti serve l'incolla in User Rules.

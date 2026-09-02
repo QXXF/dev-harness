@@ -1,19 +1,16 @@
 ---
 name: breakdown
 description: >-
-  Decomposes any problem and its solution (bugfix, algorithm, debug,
-  prototype, refactor, technical decision) into atomic comprehension bits and
-  an ordered act sequence: a fixed schema anyone can follow, with zero
-  unexplained jargon. Coding focus. Use when the user asks for breakdown,
-  scomponi, riassunto, schema, bit, spiegami il problema, come funziona il
-  fix, handoff, PR summary, sequenza logica, or a mental model of what was or
-  will be solved. Also use after a non-trivial fix when asked to explain or
-  structure the resolution. Includes a discursive mode (prose, no schema) for
-  human-readable answers: triggers on discorsivo, umano, leggibile, per il
-  manager, in un paragrafo, spiegalo a voce, per una mail/chat.
+  Opt-in schema: decomposes a problem and its solution into atomic bits and
+  an ordered act sequence. Load only when the user explicitly invokes
+  /breakdown or $breakdown. Do not apply on explain, handoff, summary, or
+  everyday questions — those stay with voice-core.
+disable-model-invocation: true
 ---
 
 # Breakdown
+
+**Opt-in.** Load only on `/breakdown` or `$breakdown`. Explaining a problem without that invoke is `dev-core` + `voice-core`, not this schema.
 
 Same schema every time. A **bit** is one fact: one sentence, one file, one `prima → dopo`. If it needs "and", split it.
 
@@ -102,7 +99,7 @@ If the user wants implementation: run Act under `dev-core`. After each Change, r
 
 ## Discorsivo
 
-Trigger: discorsivo, umano, leggibile, per il manager/team, in un paragrafo, spiegamelo a voce, testo da incollare in mail/chat.
+Trigger (only after `/breakdown` or `$breakdown` is already on): discorsivo, umano, leggibile, per il manager/team, in un paragrafo, spiegamelo a voce, testo da incollare in mail/chat. Those words alone must not load this skill.
 
 Replace the schema: bits stay an internal completeness check (extract, don't emit). Wording: `voice-core`. Shape:
 

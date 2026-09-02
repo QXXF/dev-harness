@@ -3,4 +3,4 @@ description: Hook that loads harness skills into every chat in this repo
 alwaysApply: true
 ---
 
-Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), breakdown quando chiedo di scomporre o spiegare un problema, e flow-mirror a fine analisi quando serve lo specchio UI/UX completo.
+Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
