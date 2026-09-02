@@ -7,9 +7,11 @@ CURSOR_AGENTS="${CURSOR_AGENTS_DIR:-$HOME/.cursor/agents}"
 
 SKILLS=(
   dev-core
+  voice-core
   code-integrity-audit
   design-core
   breakdown
+  flow-mirror
   node
 )
 
@@ -112,8 +114,13 @@ done
 echo
 echo "Done. Restart Cursor or open a new chat to pick up global skills."
 echo
+echo "Update the Cursor User Rule (Settings → Rules → User Rules) to:"
+echo "  Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), breakdown quando chiedo di scomporre o spiegare un problema, e flow-mirror a fine analisi quando serve lo specchio UI/UX completo."
+echo
 echo "Examples:"
 echo "  Use \$dev-core as the default engineering and communication mode."
+echo "  Use \$voice-core to shape the prose of the final answer."
 echo "  Use \$code-integrity-audit to review this change."
 echo "  Use \$design-core for UI/frontend work or design reviews."
 echo "  Use \$breakdown to decompose and explain a problem or solution."
+echo "  Use \$flow-mirror for the complete FE/BE UI/UX flow mirror."

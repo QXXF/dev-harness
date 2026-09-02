@@ -111,3 +111,17 @@ A3. **Verify esempio + edge `k=1`, `k=n`.** Il caso del passo 1 più i due estre
 
 ### One-liner
 Keep a running window sum: enter right, leave left, track max.
+
+---
+
+## Discorsivo — template a DB
+
+Domanda: "i template dei documenti sono censiti su una tabella?"
+
+> Sì, i template dei documenti che usiamo sono in gran parte censiti a database, in diverse tabelle. Il punto di partenza è quasi sempre la tabella delle tipologie documento, dove definiamo ogni tipo con il suo identificativo. Se il template è un file scaricabile (Excel, Word, ecc.), il file vero e proprio è registrato nell'anagrafica documenti e viene recuperato proprio tramite quell'identificativo (il retrieve sta in `service/DocumentService.java`). Se invece si tratta di lettere generate dall'applicazione, il contenuto sta nella tabella dei template lettera (con i parametri in una tabella collegata). I template email invece passano da un'altra coppia di tabelle dedicate. Ci sono anche dei template HTML/PDF sotto `resources/templates` che non sono a DB (ma vengono usati in altre aree, non nella nostra).
+
+## Discorsivo — arrotondamento
+
+Domanda: "perché il totale ordine sbagliava di pochi centesimi?"
+
+> Il problema è che stiamo arrotondando nel momento sbagliato. Il totale viene calcolato sommando le righe d'ordine in `service/OrderTotals.java`: ogni riga veniva arrotondata a 2 decimali prima della somma invece che dopo. Su ordini con tante righe da importi "scomodi" (es. sconti percentuali), i centesimi persi si accumulavano. Il fix sposta l'arrotondamento a fine calcolo, un punto solo, e le righe viaggiano a precisione piena. Ricorda: a DB potrebbero esserci dati sporchi, ti consiglio di controllarli e/o ricalcolarli.

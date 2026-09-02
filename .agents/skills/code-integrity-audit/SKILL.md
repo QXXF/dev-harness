@@ -163,7 +163,7 @@ If the user asks for written audit artifacts, create:
 - `.audit/findings/state-passN.md`
 - `.audit/findings/verified.md`
 
-If the user only asks for a review in chat, report findings first, ordered by severity. Include residual risk and test gaps after findings.
+If the user only asks for a review in chat, report findings first, ordered by severity. Include residual risk and test gaps after findings. Finding prose: `voice-core`.
 
 ## Absolute Rules
 

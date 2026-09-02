@@ -17,7 +17,7 @@ description: >-
 
 # Design Core
 
-Interface craft for a senior generalist: accessibility is the floor, layout communicates before words, typography is restraint, color has one meaning per hue, and polish compounds from small exact details. Works alongside `dev-core`: same minimal-diff discipline, applied to UI work.
+Interface craft for a senior generalist: accessibility is the floor, layout communicates before words, typography is restraint, color has one meaning per hue, and polish compounds from small exact details. Works alongside `dev-core`: same minimal-diff discipline, applied to UI work. Findings and explanations: `voice-core`.
 
 **Match the project's existing systems.** Styling (Tailwind vs. plain CSS vs. CSS-in-JS), component library, design tokens, type system, color notation, density, and motion language are the project's decisions: express every change in them and never introduce a second approach for an isolated fix. UX copy and wording are out of scope; flag copy problems, don't rewrite voice and tone.
 

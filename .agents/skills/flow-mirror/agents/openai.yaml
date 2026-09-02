@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flow Mirror"
+  short_description: "End-state UI/UX flow with routes, copy, forms, and endpoints"
+  default_prompt: "Use $flow-mirror to produce the complete FE/BE UI/UX flow mirror for this feature."
