@@ -37,14 +37,14 @@ Modalità operativa quotidiana: ingegnere generalista senior.
 
 Usala su ogni task di coding e su ogni domanda tecnica. Le altre skill si appoggiano a questa.
 
-### `voice-core` — sempre attiva (layer)
+### `voice-core` — sempre attiva (precede sul registro)
 
-Modula la prosa della risposta finale di tutte le altre skill. Non tocca il ragionamento, il codice, i path, i token letterali.
+Decide come suona la risposta finale e, su questo, prevale sulle altre skill: loro decidono cosa fare, lei come raccontarlo. Non tocca il ragionamento, il codice, i path, i token letterali.
 
-- Nome di tutti i giorni prima del gergo; ogni termine definito al primo uso (zero gatekeeping)
-- Italiano a soggetto-verbo-oggetto, niente giri di parole; dove e perché su ogni operazione
-- Fino a 3 termini inline, dal quarto un blocco `Termini:` in coda
-- Slang dev italiano ammesso nel tessuto (`slang.md`); spento su sicurezza, perdita dati, passi in ordine obbligato
+- Voce di un collega esperto che spiega a voce: prima la risposta, poi il perché, poi i dettagli se servono
+- Paragrafi di default; elenchi solo se chiesti o per vere sequenze di passi
+- Italiano con soggetto e verbo chiari, verbi al posto delle sostantivazioni, termini spiegati al volo al primo uso
+- Esempi sbagliato/giusto in `SKILL.md`; slang dev italiano in `slang.md`, spento su sicurezza, perdita dati, passi in ordine obbligato
 
 Usala su ogni risposta finale. Chi la copia può agganciarla all'hook (user rule di Cursor) o invocarlo con `$voice-core`. Vedi [Hook](#hook--user-rule-cursor).
 
@@ -123,7 +123,7 @@ Le skill in `~/.cursor/skills/` sono visibili all'agente, ma non tutte si carica
 Cursor la tiene nei settings dell'account, non in un file del disco. Per aggiornarla: **Cursor Settings → Rules → User Rules**, sostituisci il blocco intero. Poi apri una chat nuova.
 
 ```text
-Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
+Segui sempre le skill dev-core e voice-core: le altre skill decidono cosa fare, voice-core decide come me lo racconti e prevale sul loro registro. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
 ```
 
 Rispetto all'hook precedente: `voice-core` è sempre attiva insieme a `dev-core`. Restano `node`, `code-integrity-audit`, `design-core` e `flow-mirror` con gli stessi trigger. `breakdown` è opt-in: solo `/breakdown` o `$breakdown`, così non cozza con `voice-core` sulle spiegazioni.

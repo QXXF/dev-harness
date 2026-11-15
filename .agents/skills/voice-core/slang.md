@@ -1,10 +1,6 @@
 # Slang dev italiano
 
-Registro parlato da scrivania, ammesso nelle parole intorno al codice (voice-core regola 13). Tre regole d'uso:
-
-1. **Lo slang non sostituisce mai il token esatto.** "Pusha su `main`" va bene; "pusha sul principale" no. Comandi, path, nomi restano letterali e in backtick.
-2. **Definisci comunque al primo uso** se il termine porta un concetto che un lettore esterno non conosce ("rebasa (riscrive i tuoi commit sopra l'ultimo `main`)"). Il registro colloquiale non toglie la regola 2 (zero gatekeeping).
-3. **Spento nei casi seri** (sicurezza, azioni irreversibili, perdita dati, passi in ordine obbligato): lì si scrive piano e completo.
+Il parlato da scrivania che `voice-core` ammette nelle parole intorno al codice. Lo slang non prende mai il posto del nome esatto: "pusha su `main`" va bene, "pusha sul principale" no. Se un verbo porta un concetto che chi legge potrebbe non conoscere, spiegalo al volo comunque ("rebasa, cioè riscrivi i tuoi commit sopra l'ultimo `main`"). Nei casi seri (sicurezza, azioni irreversibili, perdita di dati, passi in ordine obbligato) lo slang si spegne e si scrive tutto per esteso.
 
 ## Verbi italianizzati
 

@@ -115,7 +115,7 @@ echo
 echo "Done. Restart Cursor or open a new chat to pick up global skills."
 echo
 echo "Update the Cursor User Rule (Settings → Rules → User Rules) to:"
-echo "  Segui sempre le skill dev-core e voice-core. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o \$breakdown."
+echo "  Segui sempre le skill dev-core e voice-core: le altre skill decidono cosa fare, voice-core decide come me lo racconti e prevale sul loro registro. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o \$breakdown."
 echo
 echo "Examples:"
 echo "  Use \$dev-core as the default engineering and communication mode."
