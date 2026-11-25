@@ -17,7 +17,7 @@ Installazione manuale:
 
 ```bash
 mkdir -p ~/.cursor/skills
-for s in dev-core voice-core code-integrity-audit design-core breakdown flow-mirror node; do
+for s in dev-core voice-core code-integrity-audit design-core breakdown flow-mirror nxd; do
   ln -sfn "$(pwd)/.agents/skills/$s" ~/.cursor/skills/$s
 done
 ```
@@ -85,13 +85,13 @@ Specchio UI/UX end-to-end del risultato (di solito TO-BE a fine analisi): rotte,
 
 Usala a fine analisi tecnica su `flusso UI/UX`, `specchio funzionale`, `walkthrough schermate`, `contratto interazioni`, `mappa endpoint`, o quando serve un handoff implementabile FE/BE. Companion: `breakdown` vede il problema, `design-core` valuta il craft UI, `flow-mirror` fissa il contratto di interazione.
 
-### `node` — contestuale
+### `nxd` — contestuale
 
-Fa funzionare Node/npm nel terminale agent via alias `node;` (fnm version select).
+Fa funzionare Node/npm nel terminale agent via la function PowerShell `nxd`: inietta fnm (`fnm env --use-on-cd --shell powershell`) e pinna `v22.12` (`fnm use v22.12`).
 
 ```bash
-node; npm test
-node; npx tsc --noEmit
+nxd; npm test
+nxd; npx tsc --noEmit
 ```
 
 Scatta da sola quando serve `npm`/`node`/`npx` o quando `node` non è in PATH.
@@ -113,7 +113,7 @@ Use $code-integrity-audit to review this change.
 Use $design-core for UI/frontend work or design reviews.
 Use $breakdown only when explicitly invoked (/breakdown or $breakdown).
 Use $flow-mirror for the complete FE/BE UI/UX flow mirror.
-Use $node when running npm or node in the shell.
+Use $nxd when running npm or node in the shell.
 ```
 
 ## Hook — user rule Cursor
@@ -123,9 +123,9 @@ Le skill in `~/.cursor/skills/` sono visibili all'agente, ma non tutte si carica
 Cursor la tiene nei settings dell'account, non in un file del disco. Per aggiornarla: **Cursor Settings → Rules → User Rules**, sostituisci il blocco intero. Poi apri una chat nuova.
 
 ```text
-Segui sempre le skill dev-core e voice-core: le altre skill decidono cosa fare, voice-core decide come me lo racconti e prevale sul loro registro. Usa la skill node per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
+Segui sempre le skill dev-core e voice-core: le altre skill decidono cosa fare, voice-core decide come me lo racconti e prevale sul loro registro. Usa la skill nxd per comandi npm/node, code-integrity-audit quando chiedo audit o review, design-core per lavoro UI/frontend (layout, colori, tipografia, accessibilità, animazioni, review di design), e flow-mirror a fine analisi quando serve lo specchio UI/UX completo. Non usare breakdown a meno che la invoco con /breakdown o $breakdown.
 ```
 
-Rispetto all'hook precedente: `voice-core` è sempre attiva insieme a `dev-core`. Restano `node`, `code-integrity-audit`, `design-core` e `flow-mirror` con gli stessi trigger. `breakdown` è opt-in: solo `/breakdown` o `$breakdown`, così non cozza con `voice-core` sulle spiegazioni.
+Rispetto all'hook precedente: `voice-core` è sempre attiva insieme a `dev-core`. Restano `nxd`, `code-integrity-audit`, `design-core` e `flow-mirror` con gli stessi trigger. `breakdown` è opt-in: solo `/breakdown` o `$breakdown`, così non cozza con `voice-core` sulle spiegazioni.
 
 In questo repo la stessa riga vive in `.cursor/rules/skills.mdc` (`alwaysApply: true`), così le chat sul harness la caricano anche senza la user rule. Negli altri progetti serve l'incolla in User Rules.

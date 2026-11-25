@@ -1,0 +1,4 @@
+interface:
+  display_name: "nxd (fnm)"
+  short_description: "Run npm/node via the nxd; fnm function in the agent terminal"
+  default_prompt: "Use $nxd when running npm or node in the shell."
