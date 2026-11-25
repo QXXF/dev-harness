@@ -39,12 +39,13 @@ Usala su ogni task di coding e su ogni domanda tecnica. Le altre skill si appogg
 
 ### `voice-core` — sempre attiva (precede sul registro)
 
-Decide come suona la risposta finale e, su questo, prevale sulle altre skill: loro decidono cosa fare, lei come raccontarlo. Non tocca il ragionamento, il codice, i path, i token letterali.
+Decide come suona la risposta finale e, su questo, prevale sulle altre skill: loro decidono cosa fare e quali fatti devono comparire, lei il registro e il budget cognitivo della pagina. Non tocca il ragionamento, il codice, i path, i token letterali.
 
-- Voce di un collega esperto che spiega a voce: prima la risposta, poi il perché, poi i dettagli se servono
+- Sintetico, non ermetico: solo le nozioni che spostano decisione o azione; le premesse portanti restano visibili, in una frase loro
+- Una idea per paragrafo corto (tetto 3 paragrafi di prosa continua); prima frase = risposta; niente muri di testo
 - Paragrafi di default; elenchi solo se chiesti o per vere sequenze di passi
-- Italiano con soggetto e verbo chiari, verbi al posto delle sostantivazioni, termini spiegati al volo al primo uso
-- Esempi sbagliato/giusto in `SKILL.md`; slang dev italiano in `slang.md`, spento su sicurezza, perdita dati, passi in ordine obbligato
+- Italiano con soggetto e verbo chiari; un termine si spiega al volo solo se serve per agire
+- Esempi sbagliato/giusto in `SKILL.md` (muro vs ermetico vs giusto); slang in `slang.md`; il perché della revisione in `rationale.md`
 
 Usala su ogni risposta finale. Chi la copia può agganciarla all'hook (user rule di Cursor) o invocarlo con `$voice-core`. Vedi [Hook](#hook--user-rule-cursor).
 

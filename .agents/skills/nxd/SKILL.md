@@ -10,3 +10,10 @@ description: >-
 
 `nxd;` = PowerShell function: `fnm env --use-on-cd --shell powershell`, then `fnm use v22.12`.
 Use: `nxd; npm [script]` / `nxd; npx …`
+
+If `nxd` is not defined in the shell, dot-source it and then call it:
+
+```powershell
+. "$env:USERPROFILE\Documents\LINKS\@my-config\shell\nxd.ps1"
+nxd
+```

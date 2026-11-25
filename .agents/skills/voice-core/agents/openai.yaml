@@ -1,4 +1,4 @@
 interface:
   display_name: "Voice Core"
-  short_description: "Prose style layer for final answers: clear, colloquial Italian, exact on tech"
+  short_description: "Prose style layer: synthetic Italian, one claim per paragraph, no hidden premises"
   default_prompt: "Use $voice-core to shape the prose of the final answer on top of the active skill."

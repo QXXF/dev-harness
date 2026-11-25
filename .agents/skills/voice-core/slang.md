@@ -1,6 +1,6 @@
 # Slang dev italiano
 
-Il parlato da scrivania che `voice-core` ammette nelle parole intorno al codice. Lo slang non prende mai il posto del nome esatto: "pusha su `main`" va bene, "pusha sul principale" no. Se un verbo porta un concetto che chi legge potrebbe non conoscere, spiegalo al volo comunque ("rebasa, cioè riscrivi i tuoi commit sopra l'ultimo `main`"). Nei casi seri (sicurezza, azioni irreversibili, perdita di dati, passi in ordine obbligato) lo slang si spegne e si scrive tutto per esteso.
+Il parlato da scrivania che `voice-core` ammette nelle parole intorno al codice. Lo slang non prende mai il posto del nome esatto: "pusha su `main`" va bene, "pusha sul principale" no. Se un verbo porta un concetto che serve per agire e chi legge potrebbe non conoscerlo, una apposizione e si va avanti ("rebasa, cioè riscrivi i tuoi commit sopra l'ultimo `main`"). Non un tutorial nel bel mezzo della frase. Nei casi seri (sicurezza, azioni irreversibili, perdita di dati, passi in ordine obbligato) lo slang si spegne e si scrive tutto per esteso.
 
 ## Verbi italianizzati
 
